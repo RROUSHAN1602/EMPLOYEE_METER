@@ -22,14 +22,18 @@ st.markdown("""
 st.title("📊 EMPLOYEE_METER OMEGA FINANCIAL")
 
 # ---- FILE UPLOAD FEATURE ----
-uploaded_file = st.file_uploader("📂 Upload a CSV file", type=["csv"])
-# hello everyone my name is himshikha mahant 
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-    df.columns = df.columns.str.strip()
-    df["Sum of Amount ( Actual Value )(In INR)"] = pd.to_numeric(df["Sum of Amount ( Actual Value )(In INR)"], errors="coerce")
+uploaded_file = st.file_uploader("📂 Upload a CSV or Excel file", type=["csv", "xlsx"])
 
-    # ritik roushan is my best friend 
+if uploaded_file is not None:
+    file_extension = uploaded_file.name.split(".")[-1]
+    # Read file based on extension
+    if file_extension == "csv":
+        df = pd.read_csv(uploaded_file)
+    elif file_extension == "xlsx":
+        df = pd.read_excel(uploaded_file, engine="openpyxl")
+
+    df.columns = df.columns.str.strip()  # Remove spaces from column names
+   
     st.success("✅ File uploaded successfully!")
 
     # ---- SIDEBAR FILTER ----
