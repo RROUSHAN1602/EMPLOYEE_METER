@@ -101,7 +101,7 @@ if page == "WANT TO COMBINE FILE":
         final_df = pd.concat([df_neg, df_pos1, df_pos2], ignore_index=True)
 
         # Add Extra Columns
-        extra_columns = ["Number of CLIENT TYPE", "Number of meetings", "Status", "Activation", "Specific ACTIVATION"]
+        extra_columns = ["Number of CLIENT TYPE", "Number of meetings", "Status", "Activation", "Specific Task"]
         for col in extra_columns:
             final_df[col] = None
 
@@ -121,18 +121,18 @@ if page == "WANT TO COMBINE FILE":
             df_meeting = df_meeting.reindex(columns=final_df.columns, fill_value=None)
             final_df = pd.concat([final_df, df_meeting], ignore_index=True)
 
-        # Process Activation & Specific ACTIVATION
+        # Process Activation & Specific Task
         if not df_ACTIVATION.empty:
             df_ACTIVATION.columns = df_ACTIVATION.columns.str.strip().str.lower()  # Clean column names
-            rename_map = {"owner": "Owner", "activation": "Activation", "specific ACTIVATION": "Specific ACTIVATION"}
+            rename_map = {"owner": "Owner", "activation": "Activation", "Specific Task": "Specific Task"}
             df_ACTIVATION.rename(columns=rename_map, inplace=True)
 
             # Ensure required columns exist
-            for col in ["Owner", "Activation", "Specific ACTIVATION"]:
+            for col in ["Owner", "Activation", "Specific Task"]:
                 if col not in df_ACTIVATION.columns:
                     df_ACTIVATION[col] = None
 
-            df_ACTIVATION = df_ACTIVATION[["Owner", "Activation", "Specific ACTIVATION"]]
+            df_ACTIVATION = df_ACTIVATION[["Owner", "Activation", "Specific Task"]]
             df_ACTIVATION = df_ACTIVATION.reindex(columns=final_df.columns, fill_value=None)
             final_df = pd.concat([final_df, df_ACTIVATION], ignore_index=True)
 
@@ -274,7 +274,7 @@ elif page == "EMPLOYEE_METER":
                 "Number of CLIENT TYPE": "sum",
                 "Number of meetings": "sum",
                 "Activation": "sum",
-                "Specific ACTIVATION": "sum"
+                "Specific Task": "sum"
             }).reset_index()
             deals = data.groupby("Owner").size().reset_index(name="Number of Deals")
             return pd.merge(perf, deals, on="Owner", how="left")
