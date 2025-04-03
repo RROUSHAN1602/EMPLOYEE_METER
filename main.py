@@ -307,3 +307,6 @@ elif page == "EMPLOYEE_METER":
 elif page == "About us":
     st.title("📄NICE TO SEE YOU HERE")
     st.write("THANK YOU FOR VISITS.")
+    st.image("https://media.licdn.com/dms/image/v2/C510BAQGi9wEg7Gspdw/company-logo_200_200/company-logo_200_200/0/1630601866330?e=2147483647&v=beta&t=KJUNX1I5DYg6eS5MluO2DrzWyC42-elqkeuNByTE-Uw", caption="BECAUSE WE GROW YOUR FUTURE", use_container_width=True)
+
+    
