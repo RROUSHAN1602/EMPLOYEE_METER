@@ -305,22 +305,19 @@ elif page == "EMPLOYEE_METER":
         st.warning("⚠ Please upload a CSV file to proceed.")
 
 elif page == "About us":
-    st.title("📄NICE TO SEE YOU HERE")
-    st.write("THANK YOU FOR VISITS.")
+        
+        st.title("📄NICE TO SEE YOU HERE")
+        st.write("THANK YOU FOR VISITS.")
   
-        st.title("📄 NICE TO SEE YOU HERE")
-        st.write("THANK YOU FOR VISITING.")
-        
         image_url = "https://media.licdn.com/dms/image/C510BAQGi9wEg7Gspdw/company-logo_200_200/0/1630601866330?e=2147483647&v=beta&t=KJUNX1I5DYg6eS5MluO2DrzWyC42-elqkeuNByTE-Uw"
-        
-        # Center and resize image using Markdown & CSS
         st.markdown(
             f"""
             <div style="display: flex; justify-content: center;">
-                <img src="{image_url}" width="150">
+                <img src="{image_url}" style="width: 120px; height: 120px;">
             </div>
             """,
             unsafe_allow_html=True
         )
 
+    
     
