@@ -249,7 +249,7 @@ elif page == "EMPLOYEE_METER":
 
         # ---- AUM & SIP CATEGORIZATION ----
         def categorize_aum_sip(data):
-            aum_df = data[data["Product or Service"].str.contains("EQUITY|DEBT", case=False, na=False) &
+            aum_df = data[data["Product or Service"].str.contains("EQUITY|DEBT|PORTFOLIO MANAGEMENT SERVICES|PMS", case=False, na=False) &
                         ~data["Product or Service"].str.contains("SIP", case=False, na=False)]
             sip_df = data[data["Product or Service"].str.contains("SIP", case=False, na=False)]
             aum = aum_df.groupby("Owner")["Sum of Amount ( Actual Value )(In INR)"].sum().reset_index().rename(
